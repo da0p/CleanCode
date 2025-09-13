@@ -16,7 +16,6 @@ auto isValidDrink(const std::string& drinkName) -> bool {
 }
 
 void PizzaStore::orderPizza(const std::string& pizzaName) {
-  // check if the order is valid
   if (!isValidOrder(pizzaName)) {
     std::cout << "Invalid pizza order\n";
     return;
