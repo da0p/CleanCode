@@ -1,1 +1,8 @@
 Checks: 'cppcoreguidelines-*,bugprone-*,clang-analyzer-*,misc-*,modernize-*,readability-*,portability-*'
+FormatStyle: Google
+CheckOptions:
+    readability-identifier-naming.NamespaceCase: CamelCase
+    readibility-identifier-naming.ClassCase: CamelCase
+    readibility-identifier-naming.FunctionCase: camelBack
+    readability-identifier-naming.ParameterCase: camelBack
+    readability-identifier-naming.PrivateMemberPrefix: m_
