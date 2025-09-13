@@ -1,13 +1,24 @@
-#include <iostream>
-
 #include "PizzaStore.h"
 
-namespace ThisIsAPizzaStoreNamespace {
+#include <iostream>
+
+namespace {
+auto isValidOrder(const std::string& orderName) -> bool {
+  return orderName == "Margherita" || orderName == "Hawaiian" ||
+         orderName == "Napoletan" || orderName == "Marinara" ||
+         orderName == "Ortolana";
+}
+
+auto isValidDrink(const std::string& drinkName) -> bool {
+  return drinkName == "Vodka" || drinkName == "Whiskey" ||
+         drinkName == "Rice Wine" || drinkName == "Coke";
+}
+}
+
 void PizzaStore::orderPizza(const std::string& pizzaName) {
   // check if the order is valid
-  if (pizzaName != "Margherita" && pizzaName != "Hawaiian" &&
-      pizzaName != "Napoletan" && pizzaName != "Marinara" &&
-      pizzaName != "Ortolana") {
+  if (!isValidOrder(pizzaName)) {
+    std::cout << "Invalid pizza order\n";
     return;
   }
 
@@ -17,20 +28,22 @@ void PizzaStore::orderPizza(const std::string& pizzaName) {
 
 void PizzaStore::makePizza() {
   for (const auto& order : m_pizzaOrders) {
-    std::string topping = m_toppingOrders.count(order) > 0 ? " with topping " + m_toppingOrders.at(order) : "";
+    std::string topping = m_toppingOrders.count(order) > 0
+                              ? " with topping " + m_toppingOrders.at(order)
+                              : "";
     std::cout << "Doing " << order << " pizza" << topping << "\n";
   }
 }
 
-void PizzaStore::tiktok() {
+void PizzaStore::advertiseOnTiktok() {
   for (const auto& order : m_pizzaOrders) {
     std::cout << "Showing pizza " << order << " on tiktok\n";
   }
 }
 
 void PizzaStore::orderDrink(const std::string& drinkName) {
-  if (drinkName != "Vodka" && drinkName != "Whiskey" &&
-      drinkName != "Rice Wine" && drinkName != "Coke") {
+  if (!isValidDrink(drinkName)) {
+    std::cout << "Invalid drink order\n";
     return;
   }
 
@@ -57,9 +70,3 @@ void PizzaStore::showAllOrders() {
     }
   }
 }
-
-void PizzaStore::partyHard() {
-  // This is cute and I like it!
-  std::cout << "order everything!\n";
-}
-}  // namespace ThisIsAPizzaStoreNamespace
