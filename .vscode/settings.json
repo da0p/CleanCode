@@ -4,4 +4,5 @@
     ],
     "editor.formatOnSave": false,
     "editor.formatOnSaveMode": "file",
+    "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json"
 }
