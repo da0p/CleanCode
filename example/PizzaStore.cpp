@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "PizzaStore.h"
 
 namespace ThisIsAPizzaStoreNamespace {
@@ -10,19 +12,19 @@ void PizzaStore::orderPizza(const std::string& pizzaName) {
   }
 
   // accept the order
-  p.push_back(pizzaName);
+  m_pizzaOrders.push_back(pizzaName);
 }
 
 void PizzaStore::makePizza() {
-  for (const auto& n : p) {
-    std::string topping = t.count(n) ? " with topping " + t.at(n) : "";
-    std::cout << "Doing " << n << " pizza" << topping << "\n";
+  for (const auto& order : m_pizzaOrders) {
+    std::string topping = m_toppingOrders.count(order) > 0 ? " with topping " + m_toppingOrders.at(order) : "";
+    std::cout << "Doing " << order << " pizza" << topping << "\n";
   }
 }
 
 void PizzaStore::tiktok() {
-  for (const auto& n : p) {
-    std::cout << "Showing pizza " << n << " on tiktok\n";
+  for (const auto& order : m_pizzaOrders) {
+    std::cout << "Showing pizza " << order << " on tiktok\n";
   }
 }
 
@@ -32,26 +34,26 @@ void PizzaStore::orderDrink(const std::string& drinkName) {
     return;
   }
 
-  d.push_back(drinkName);
+  m_drinkOrders.push_back(drinkName);
 }
 
 void PizzaStore::makeDrink() {
-  for (const auto& r : d) {
-    std::cout << "Making drink " << r << "\n";
+  for (const auto& drink : m_drinkOrders) {
+    std::cout << "Making drink " << drink << "\n";
   }
 }
 
-void PizzaStore::addTopping(const std::string& pizza_name,
-                            const std::string& topping_name) {
-  t[pizza_name] = topping_name;
+void PizzaStore::addTopping(const std::string& pizzaName,
+                            const std::string& toppingName) {
+  m_toppingOrders[pizzaName] = toppingName;
 }
 
 void PizzaStore::showAllOrders() {
-  for (const auto& pizza : p) {
+  for (const auto& pizza : m_pizzaOrders) {
     std::cout << "Pizza order:\n";
     std::cout << "Name: " << pizza << "\n";
-    if (t.count(pizza)) {
-      std::cout << "Topping: " << t.at(pizza) << "\n";
+    if (m_toppingOrders.count(pizza) > 0) {
+      std::cout << "Topping: " << m_toppingOrders.at(pizza) << "\n";
     }
   }
 }
